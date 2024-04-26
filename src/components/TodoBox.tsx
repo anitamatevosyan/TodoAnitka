@@ -49,7 +49,10 @@ export const TodoBox = () => {
   return (
     <>
       <Input addTask={addTask} />
-      <div>{newTodo.length} Задачи</div>
+      <div>
+        {newTodo.length}
+        {newTodo.length > 1 ? 'Tasks' : 'Task'}
+      </div>
       <FilterButtons setFilter={setFilter} />
       {filteredTasks.length === 0 ? 'У вас пока нет задач, добавите первую!' : newTodo}
     </>

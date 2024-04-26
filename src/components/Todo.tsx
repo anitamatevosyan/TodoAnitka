@@ -54,16 +54,16 @@ export const Todo: FC<Props> = ({ task, deleteTask, editTask }) => {
       <div>
         {edit ? (
           <StyleBtnTodo onClick={SaveClick}>
-            <AiOutlineSave size={25} />
+            <AiOutlineSave size={25} color='rgb(215, 149, 178)' />
           </StyleBtnTodo>
         ) : (
           <StyleBtnTodo onClick={EditClick}>
-            <AiFillEdit size={25} />
+            <AiFillEdit size={25} color='rgb(215, 149, 178)' />
           </StyleBtnTodo>
         )}
 
         <StyleBtnTodo onClick={() => deleteTask(value.id)}>
-          <AiOutlineDelete size={25} />
+          <AiOutlineDelete size={25} color='rgb(215, 149, 178)' />
         </StyleBtnTodo>
       </div>
     </StyleTodo>

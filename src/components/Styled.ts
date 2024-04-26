@@ -14,16 +14,19 @@ const StyleTodo = styled.div`
 `;
 
 const StyleBtnTodo = styled.button`
+  font-family: 'Sedan', serif;
   transition: 0.2s linear;
   border: 0;
   background: none;
 `;
 const StyleTextTodo = styled.p`
+  font-family: 'Sedan', serif;
   overflow: hidden;
   max-width: 470px;
   text-overflow: ellipsis;
 `;
 const StyleBtn = styled.button`
+  font-family: 'Sedan', serif;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -36,6 +39,7 @@ const StyleBtn = styled.button`
 `;
 
 const StyleInput = styled.input`
+  font-family: 'Sedan', serif;
   width: 300px;
   padding: 12px 20px;
   margin: 8px 0;
@@ -44,6 +48,7 @@ const StyleInput = styled.input`
   border-radius: 4px;
 `;
 const StyleFilterButtons = styled.button`
+  font-family: 'Sedan', serif;
   width: 100px;
   height: 40px;
   border-radius: 10px;
