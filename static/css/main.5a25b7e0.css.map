@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.5a25b7e0.css","mappings":"AAAA,MAEE,kBAAmB,CAInB,sBAAuB,CALvB,YAAa,CAEb,qBAAsB,CAEtB,gBAAiB,CADjB,WAGF","sources":["App.css"],"sourcesContent":["#root {\n  display: flex;\n  align-items: center;\n  flex-direction: column;\n  width: 100vw;\n  min-height: 100vh;\n  background-color: azure;\n}\n"],"names":[],"sourceRoot":""}
