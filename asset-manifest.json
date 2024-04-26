@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.5a25b7e0.css",
-    "main.js": "/static/js/main.a3e7d889.js",
-    "index.html": "/index.html",
-    "main.5a25b7e0.css.map": "/static/css/main.5a25b7e0.css.map",
-    "main.a3e7d889.js.map": "/static/js/main.a3e7d889.js.map"
+    "main.css": "/TodoAnitka-.github.io/static/css/main.5a25b7e0.css",
+    "main.js": "/TodoAnitka-.github.io/static/js/main.ac1c80dc.js",
+    "index.html": "/TodoAnitka-.github.io/index.html",
+    "main.5a25b7e0.css.map": "/TodoAnitka-.github.io/static/css/main.5a25b7e0.css.map",
+    "main.ac1c80dc.js.map": "/TodoAnitka-.github.io/static/js/main.ac1c80dc.js.map"
   },
   "entrypoints": [
     "static/css/main.5a25b7e0.css",
-    "static/js/main.a3e7d889.js"
+    "static/js/main.ac1c80dc.js"
   ]
 }
