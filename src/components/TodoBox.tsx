@@ -31,16 +31,20 @@ export const TodoBox = () => {
   };
 
   const addTask = (title: string) => {
-    const newTasks = [
-      ...tasks,
-      {
-        id: uuidv4(),
-        title: title,
-        completed: false,
-      },
-    ];
-    setTasks(newTasks);
-    localStorage.setItem('todolist', JSON.stringify(newTasks));
+    if (title.trim().length === 0) {
+      alert('там пусто, дурак!');
+    } else {
+      const newTasks = [
+        ...tasks,
+        {
+          id: uuidv4(),
+          title: title,
+          completed: false,
+        },
+      ];
+      setTasks(newTasks);
+      localStorage.setItem('todolist', JSON.stringify(newTasks));
+    }
   };
 
   const newTodo = filteredTasks.map((task) => {
