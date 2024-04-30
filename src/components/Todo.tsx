@@ -5,27 +5,46 @@ import { AiOutlineDelete, AiFillEdit, AiOutlineSave } from 'react-icons/ai';
 
 type Props = {
   task: Task;
-  deleteTask: (id: string) => void;
-  editTask: (task: Task) => void;
+  tasks: Task[];
+  setTasks: React.Dispatch<Task[]>;
 };
-export const Todo: FC<Props> = ({ task, deleteTask, editTask }) => {
-  const [edit, setEdit] = useState(false);
+export const Todo: FC<Props> = ({ task, setTasks, tasks }) => {
+  const [isEdit, setIsEdit] = useState(false);
   const [value, setValue] = useState(task);
 
-  const EditClick = () => {
-    setEdit(true);
+  const deleteTask = (id: string) => {
+    const filtered = tasks.filter((el) => el.id !== id);
+    setTasks(filtered);
+    localStorage.setItem('todolist', JSON.stringify(filtered));
   };
-  const SaveClick = () => {
-    editTask(value);
-    setEdit(false);
+
+  const editClick = () => {
+    setIsEdit(true);
   };
+  const saveClick = () => {
+    const updatedTasks = tasks.map((el) => {
+      if (el.id != task.id) return el;
+      return task;
+    });
+    setTasks(updatedTasks);
+    localStorage.setItem('todolist', JSON.stringify(updatedTasks));
+    setIsEdit(false);
+  };
+
   const checkboxClick = () => {
     const newTask = {
       ...value,
       completed: !value.completed,
     };
     setValue(newTask);
-    editTask(newTask);
+    setTasks(
+      tasks.map((task) => {
+        if (newTask.id === task.id) {
+          return newTask;
+        }
+        return task;
+      })
+    );
   };
 
   const onInputChange = (newTitle: string) => {
@@ -40,7 +59,7 @@ export const Todo: FC<Props> = ({ task, deleteTask, editTask }) => {
   return (
     <StyleTodo>
       <input onClick={checkboxClick} type='checkbox' defaultChecked={value.completed} />
-      {edit ? (
+      {isEdit ? (
         <input
           value={value.title}
           onChange={(e) => {
@@ -52,12 +71,12 @@ export const Todo: FC<Props> = ({ task, deleteTask, editTask }) => {
       )}
 
       <div>
-        {edit ? (
-          <StyleBtnTodo onClick={SaveClick}>
+        {isEdit ? (
+          <StyleBtnTodo onClick={saveClick}>
             <AiOutlineSave size={25} color='rgb(215, 149, 178)' />
           </StyleBtnTodo>
         ) : (
-          <StyleBtnTodo onClick={EditClick}>
+          <StyleBtnTodo onClick={editClick}>
             <AiFillEdit size={25} color='rgb(215, 149, 178)' />
           </StyleBtnTodo>
         )}

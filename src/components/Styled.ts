@@ -21,9 +21,8 @@ const StyleBtnTodo = styled.button`
 `;
 const StyleTextTodo = styled.p`
   font-family: 'Sedan', serif;
-  overflow: hidden;
   max-width: 470px;
-  text-overflow: ellipsis;
+  word-break: break-all;
 `;
 const StyleBtn = styled.button`
   font-family: 'Sedan', serif;
@@ -47,14 +46,14 @@ const StyleInput = styled.input`
   border: 2px solid pink;
   border-radius: 4px;
 `;
-const StyleFilterButtons = styled.button`
+const StyleFilterButtons = styled.button<{ active: boolean }>`
   font-family: 'Sedan', serif;
   width: 100px;
   height: 40px;
   border-radius: 10px;
   color: #ffffff;
   transition: 0.2s linear;
-  background: #d795b2;
+  background: ${(props) => (props.active ? '#f3b2cc' : '#d795b2')};
   margin: 0.5rem;
 `;
 const StyleFilterButtonsBlock = styled.div`

@@ -6,7 +6,7 @@ type Props = {
   addTask: (title: string) => void;
 };
 
-export const Input: FC<Props> = (props) => {
+export const Input: FC<Props> = ({ addTask }) => {
   const [text, setText] = useState('');
   return (
     <>
@@ -16,7 +16,7 @@ export const Input: FC<Props> = (props) => {
         onChange={(event) => setText(event.target.value)}
         placeholder='Заполни меня....'
       />
-      <StyleBtn onClick={() => props.addTask(text)}>Add</StyleBtn>
+      <StyleBtn onClick={() => addTask(text)}>Add</StyleBtn>
     </>
   );
 };

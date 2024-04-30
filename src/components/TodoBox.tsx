@@ -8,57 +8,40 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const TodoBox = () => {
   const [tasks, setTasks] = useState<Task[]>(JSON.parse(localStorage.getItem('todolist') || '[]'));
-  const [filter, setFilter] = useState(TaskFilter.ALL);
+  const [filter, setFilter] = useState<TaskFilter>(TaskFilter.ALL);
 
   const filteredTasks = FilterTasks(tasks, filter);
-
-  const deleteTask = (id: string) => {
-    const filtered = tasks.filter((el) => el.id !== id);
-    setTasks(filtered);
-    localStorage.setItem('todolist', JSON.stringify(filtered));
-  };
-
-  const editTask = (task: Task) => {
-    const newTasks = tasks.map((el) => {
-      if (el.id === task.id) {
-        return task;
-      } else {
-        return el;
-      }
-    });
-    setTasks(newTasks);
-    localStorage.setItem('todolist', JSON.stringify(newTasks));
-  };
 
   const addTask = (title: string) => {
     if (title.trim().length === 0) {
       alert('там пусто, дурак!');
-    } else {
-      const newTasks = [
-        ...tasks,
-        {
-          id: uuidv4(),
-          title: title,
-          completed: false,
-        },
-      ];
-      setTasks(newTasks);
-      localStorage.setItem('todolist', JSON.stringify(newTasks));
+      return;
     }
+    const newTasks = [
+      ...tasks,
+      {
+        id: uuidv4(),
+        title: title,
+        completed: false,
+      },
+    ];
+    setTasks(newTasks);
+    localStorage.setItem('todolist', JSON.stringify(newTasks));
   };
 
-  const newTodo = filteredTasks.map((task) => {
-    return <Todo key={task.id} task={task} deleteTask={deleteTask} editTask={editTask}></Todo>;
-  });
+  const todoCounter = () => {
+    return `${filteredTasks.length} ${filteredTasks.length > 1 ? 'Tasks' : 'Task'}`;
+  };
   return (
     <>
       <Input addTask={addTask} />
-      <div>
-        {newTodo.length}
-        {newTodo.length > 1 ? 'Tasks' : 'Task'}
-      </div>
-      <FilterButtons setFilter={setFilter} />
-      {filteredTasks.length === 0 ? 'У вас пока нет задач, добавите первую!' : newTodo}
+      {todoCounter()}
+      <FilterButtons setFilter={setFilter} filter={filter} />
+      {filteredTasks.length === 0
+        ? 'У вас пока нет задач, добавите первую!'
+        : filteredTasks.map((task) => {
+            return <Todo key={task.id} task={task} tasks={tasks} setTasks={setTasks}></Todo>;
+          })}
     </>
   );
 };
