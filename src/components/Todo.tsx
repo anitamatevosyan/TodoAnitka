@@ -10,7 +10,7 @@ type Props = {
 };
 export const Todo: FC<Props> = ({ task, setTasks, tasks }) => {
   const [isEdit, setIsEdit] = useState(false);
-  const [value, setValue] = useState(task);
+  const [value, setValue] = useState(task.title);
 
   const deleteTask = (id: string) => {
     const filtered = tasks.filter((el) => el.id !== id);
@@ -33,10 +33,9 @@ export const Todo: FC<Props> = ({ task, setTasks, tasks }) => {
 
   const checkboxClick = () => {
     const newTask = {
-      ...value,
-      completed: !value.completed,
+      ...task,
+      completed: !task.completed,
     };
-    setValue(newTask);
     setTasks(
       tasks.map((task) => {
         if (newTask.id === task.id) {
@@ -47,27 +46,18 @@ export const Todo: FC<Props> = ({ task, setTasks, tasks }) => {
     );
   };
 
-  const onInputChange = (newTitle: string) => {
-    setValue((prev) => {
-      return {
-        ...prev,
-        title: newTitle,
-      };
-    });
-  };
-
   return (
     <StyleTodo>
-      <input onClick={checkboxClick} type='checkbox' defaultChecked={value.completed} />
+      <input onClick={checkboxClick} type='checkbox' defaultChecked={task.completed} />
       {isEdit ? (
         <input
-          value={value.title}
+          value={value}
           onChange={(e) => {
-            onInputChange(e.target.value);
+            setValue(e.target.value);
           }}
         />
       ) : (
-        <StyleTextTodo>{value.title}</StyleTextTodo>
+        <StyleTextTodo>{task.title}</StyleTextTodo>
       )}
 
       <div>
@@ -81,7 +71,7 @@ export const Todo: FC<Props> = ({ task, setTasks, tasks }) => {
           </StyleBtnTodo>
         )}
 
-        <StyleBtnTodo onClick={() => deleteTask(value.id)}>
+        <StyleBtnTodo onClick={() => deleteTask(task.id)}>
           <AiOutlineDelete size={25} color='rgb(215, 149, 178)' />
         </StyleBtnTodo>
       </div>

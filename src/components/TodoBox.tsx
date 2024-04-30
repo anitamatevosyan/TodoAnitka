@@ -35,7 +35,7 @@ export const TodoBox = () => {
   return (
     <>
       <Input addTask={addTask} />
-      {todoCounter()}
+      {todoCounter}
       <FilterButtons setFilter={setFilter} filter={filter} />
       {filteredTasks.length === 0
         ? 'У вас пока нет задач, добавите первую!'
