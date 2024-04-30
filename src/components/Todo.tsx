@@ -24,7 +24,10 @@ export const Todo: FC<Props> = ({ task, setTasks, tasks }) => {
   const saveClick = () => {
     const updatedTasks = tasks.map((el) => {
       if (el.id != task.id) return el;
-      return task;
+      return {
+        ...task,
+        title: value,
+      };
     });
     setTasks(updatedTasks);
     localStorage.setItem('todolist', JSON.stringify(updatedTasks));
